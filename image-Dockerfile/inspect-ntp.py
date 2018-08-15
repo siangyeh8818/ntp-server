@@ -47,12 +47,13 @@ for item in range(0,cluster_number,1):
     os.system("echo sshpass -p " + env_password + " ssh -o StrictHostKeyChecking=no " + env_user + "@" + list.split(",")[item] + " 'ls -l /etc/localtime >> result.txt' >> init-ssh2.sh" )
     os.system("echo " + list.split(",")[item] + " ansible_connection=ssh ansible_ssh_pass="+ env_password + " ansible_ssh_user=" + env_user + " >>hosts-list")
 
+result_file="/ntp-ansible/result.txt"
+os.system("touch "+result_file)
 os.system("chmod +x init-ssh.sh")
 os.system("./init-ssh.sh")
 os.system("chmod +x init-ssh2.sh")
 os.system("./init-ssh2.sh")
 
-result_file="/ntp-ansible/result.txt"
 f_result = open(result_file)
 result_content=f_result.readline()
 while result_content:
