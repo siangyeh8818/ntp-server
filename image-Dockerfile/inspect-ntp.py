@@ -1,7 +1,9 @@
 #coding:utf-8
 import os
+import time
 import commands
 
+print "-----------Starting to checking cluster node time----------------"
 def identifyFileExist(filepath):
     if not os.path.exists(filepath):
         print filepath,'does not exists , stop testing........'
@@ -28,18 +30,16 @@ env_object = os.environ
 #list = env_object.get('NTP_CLUSTER_IP_LIST')
 #env_password = env_object.get('NTP_NODE_PASSWORD')
 #env_user = env_object.get('NTP_NODE_USER')
-#print list
-#print list.split(",")[0]
-#print list.split(",")[1]
-#print list.split(",")[2]
 cluster_number=list.count(",")+1
-print "-----------Starting to checking cluster node time----------------"
+time.sleep(1)
 print "Node number : "+ str(list.count(",")+1)
+time.sleep(1)
 os.system("rm -rf hosts-list")
 os.system("rm -rf /root/.ssh/known_hosts")
 os.system("rm -rf init-ssh.sh")
 os.system("rm -rf init-ssh2.sh")
 os.system("rm -rf result.txt")
+time.sleep(2)
 for item in range(0,cluster_number,1):
 #    print item
     os.system("echo sshpass -p " + env_password + " ssh -o StrictHostKeyChecking=no " + env_user + "@" + list.split(",")[item] + " date >> init-ssh.sh" )
@@ -48,12 +48,17 @@ for item in range(0,cluster_number,1):
     os.system("echo " + list.split(",")[item] + " ansible_connection=ssh ansible_ssh_pass="+ env_password + " ansible_ssh_user=" + env_user + " >>hosts-list")
 
 result_file="/ntp-ansible/result.txt"
+time.sleep(1)
 os.system("touch "+result_file)
+time.sleep(1)
 os.system("chmod +x init-ssh.sh")
+time.sleep(1)
 os.system("./init-ssh.sh")
+time.sleep(2)
 os.system("chmod +x init-ssh2.sh")
+time.sleep(1)
 os.system("./init-ssh2.sh")
-
+time.sleep(2)
 f_result = open(result_file)
 result_content=f_result.readline()
 while result_content:
@@ -67,7 +72,5 @@ while result_content:
    result_content=f_result.readline()
 f_result.close()
 
-#line = commands.getstatusoutput("ansible all -i hosts-list -m command -a 'ls -l /etc/localtime'")
-#print line[1]
-    
+time.sleep(2) 
 print "-----------Ending to checking cluster node time----------------"
