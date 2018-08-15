@@ -1,0 +1,4 @@
+[group1]
+#172.16.106.130 ansible_connection=ssh ansible_ssh_pass=Emotibot1 ansible_ssh_user=deployer ansible_become=true ansible_become_method=sudo ansible_become_user=root ansible_become_pass=Emotibot1
+#172.16.106.131 ansible_connection=ssh ansible_ssh_pass=Emotibot1 ansible_ssh_user=deployer ansible_become=true ansible_become_method=sudo ansible_become_user=root ansible_become_pass=Emotibot1
+#172.16.106.132 ansible_connection=ssh ansible_ssh_pass=Emotibot1 ansible_ssh_user=deployer ansible_become=true ansible_become_method=sudo ansible_become_user=root ansible_become_pass=Emotibot1

@@ -1,0 +1,13 @@
+version: '2.1'
+services:
+    ntp-server:
+       image: ntp:beta-18
+       container_name: ntp-server
+       restart: always
+       environment:
+         - NTP_CLUSTER_IP_LIST=172.16.101.91,172.16.101.92,172.16.101.93
+         - NTP_NODE_USER=deployer
+         - NTP_NODE_PASSWORD=Emotibot1
+         - SPECIFY_NTP_SERVER=tw.pool.ntp.org
+#       volumes:
+#          - /etc/localtime:/etc/localtime

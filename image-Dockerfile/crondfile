@@ -1,0 +1,2 @@
+*/10 * * * * root /usr/bin/python /ntp-ansible/inspect-ntp.py >> /var/log/cron.log 2>&1
+
