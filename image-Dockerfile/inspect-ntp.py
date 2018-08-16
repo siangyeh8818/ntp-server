@@ -23,9 +23,13 @@ while jmx_content:
     if not jmx_content.find("NTP_NODE_USER")==-1:
         env_user=jmx_content.split("=")[1]
         env_user=env_user.strip('\n') 
+    if not jmx_content.find("SPECIFY_NTP_SERVER")==-1:
+        env_ntpserver=jmx_content.split("=")[1]
+        env_ntpserver=jmx_content.split("=")[1]
     jmx_content=f_jmx.readline()
 
 f_jmx.close()
+os.system("ntpdate -s env_ntpserver")
 env_object = os.environ
 #list = env_object.get('NTP_CLUSTER_IP_LIST')
 #env_password = env_object.get('NTP_NODE_PASSWORD')
