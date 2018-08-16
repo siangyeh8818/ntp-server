@@ -29,7 +29,7 @@ while jmx_content:
     jmx_content=f_jmx.readline()
 
 f_jmx.close()
-os.system("ntpdate -s env_ntpserver")
+os.system("/usr/sbin/ntpdate  -s " +env_ntpserver)
 env_object = os.environ
 #list = env_object.get('NTP_CLUSTER_IP_LIST')
 #env_password = env_object.get('NTP_NODE_PASSWORD')

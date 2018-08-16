@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     ntp-server:
-       image: siangyeh8818/ntp:v2
+       image: siangyeh8818/ntp:v3
        container_name: ntp-server
        restart: always
        privileged: true
