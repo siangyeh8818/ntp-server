@@ -25,12 +25,22 @@ while jmx_content:
         env_user=env_user.strip('\n') 
     if not jmx_content.find("SPECIFY_NTP_SERVER")==-1:
         env_ntpserver=jmx_content.split("=")[1]
-        env_ntpserver=jmx_content.split("=")[1]
+        env_ntpserver=env_ntpserver.strip('\n')
+    if not jmx_content.find("BIOS_TIME_CORRETCION")==-1:
+        env_BIOS_time_correction=jmx_content.split("=")[1]
+        env_BIOS_time_correction=env_BIOS_time_correction.strip('\n')
     jmx_content=f_jmx.readline()
 
 f_jmx.close()
-os.system("/usr/sbin/ntpdate  -s " +env_ntpserver)
-env_object = os.environ
+
+if env_BIOS_time_correction=="True" or env_BIOS_time_correction=="true":
+   os.system("/usr/sbin/ntpdate  -s " +env_ntpserver + "; /sbin/hwclock -w")
+   print "RUN crond command : /usr/sbin/ntpdate  -s " +env_ntpserver + "; /sbin/hwclock -w"
+else:
+   os.system("/usr/sbin/ntpdate  -s " +env_ntpserver)
+   print "RUN crond command : /usr/sbin/ntpdate  -s " +env_ntpserver
+
+#env_object = os.environ
 #list = env_object.get('NTP_CLUSTER_IP_LIST')
 #env_password = env_object.get('NTP_NODE_PASSWORD')
 #env_user = env_object.get('NTP_NODE_USER')

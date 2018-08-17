@@ -5,6 +5,7 @@ env | grep NTP_CLUSTER_IP_LIST >> env.txt
 env | grep NTP_NODE_USER >> env.txt
 env | grep NTP_NODE_PASSWORD >> env.txt
 env | grep SPECIFY_NTP_SERVER >> env.txt
+env | grep BIOS_TIME_CORRETCION >> env.txt
 crond
 touch /var/log/cron.log
 tail -f /var/log/cron.log -n 1
