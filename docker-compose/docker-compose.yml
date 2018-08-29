@@ -9,7 +9,7 @@ services:
          - NTP_CLUSTER_IP_LIST=172.16.106.130,172.16.106.131,172.16.106.132
          - NTP_NODE_USER=deployer
          - NTP_NODE_PASSWORD=Emotibot1
-         - SPECIFY_NTP_SERVER=tw.pool.ntp.org
+         - SPECIFY_NTP_SERVER=TOCK.stdtime.gov.tw
          - BIOS_TIME_CORRETCION=True
        volumes:
           - /etc/localtime:/etc/localtime
