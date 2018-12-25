@@ -6,10 +6,19 @@ services:
        restart: always
        privileged: true
        environment:
-         - NTP_CLUSTER_IP_LIST=172.16.106.130,172.16.106.131,172.16.106.132
-         - NTP_NODE_USER=deployer
-         - NTP_NODE_PASSWORD=Emotibot1
+         - NTP_CLUSTER_IP_LIST=192.168.89.169,192.168.89.170,192.168.89.171
+         - NTP_NODE_USER=root
+         - NTP_NODE_PASSWORD=pentiumvm
          - SPECIFY_NTP_SERVER=TOCK.stdtime.gov.tw
          - BIOS_TIME_CORRETCION=True
        volumes:
           - /etc/localtime:/etc/localtime
+       networks:
+          ntp-network:
+            ipv4_address: 172.19.0.2
+networks:
+   ntp-network:
+      ipam:
+         config:
+         - subnet: 172.19.0.0/24
+           gateway: 172.19.0.1
